@@ -4,8 +4,6 @@ import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,8 +43,8 @@ public class UserController {
         try {
             userService.deleteUser(id);
             return ResponseEntity.ok("User with userId : " + id + " deleted successfully !");
-        }catch (ResourceNotFoundException ex){
-            throw new ResourceNotFoundException("User not found with UserId : "+ id);
+        } catch (ResourceNotFoundException ex) {
+            throw new ResourceNotFoundException("User not found with UserId : " + id);
         }
     }
 
