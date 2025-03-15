@@ -1,0 +1,110 @@
+{
+    "info": {
+        "name": "User Service API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create User",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"name\": \"John Doe\",\n    \"userName\": \"john_doe\",\n    \"email\": \"john.doe@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8989/api/users/user",
+                    "host": [
+                        "http://localhost:8989"
+                    ],
+                    "path": [
+                        "api",
+                        "users"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get User by ID",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8989/api/users/1",
+                    "host": [
+                        "http://localhost:8989"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get All Users",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "http://localhost:8989/api/users/",
+                    "host": [
+                        "http://localhost:8989"
+                    ],
+                    "path": [
+                        "api",
+                        "users"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update User",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"id\": 1,\n    \"name\": \"John Updated\",\n    \"userName\": \"john_updated\",\n    \"email\": \"john.updated@example.com\"\n}"
+                },
+                "url": {
+                    "raw": "http://localhost:8989/api/users/user",
+                    "host": [
+                        "http://localhost:8989"
+                    ],
+                    "path": [
+                        "api",
+                        "users"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete User",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "http://localhost:8989/api/users/1",
+                    "host": [
+                        "http://localhost:8989"
+                    ],
+                    "path": [
+                        "api",
+                        "users",
+                        "1"
+                    ]
+                }
+            }
+        }
+    ]
+}

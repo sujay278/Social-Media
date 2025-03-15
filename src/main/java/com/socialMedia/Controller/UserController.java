@@ -1,0 +1,53 @@
+package com.socialMedia.Controller;
+
+import com.socialMedia.Entity.User;
+import com.socialMedia.Exception.ResourceNotFoundException;
+import com.socialMedia.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/users")
+public class UserController {
+
+    @Autowired
+    private UserService userService;
+
+    //TODO Exception handling for all cases needs to be added
+
+    @PostMapping("/user")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.createUser(user));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getUser(@PathVariable int id) {
+        return ResponseEntity.ok(userService.getUser(id));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
+    }
+
+    @PutMapping("/user")
+    public ResponseEntity<User> updateUser(@RequestBody User user) {
+        return ResponseEntity.ok(userService.updateUser(user));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteUser(@PathVariable int id) {
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.ok("User with userId : " + id + " deleted successfully !");
+        }catch (ResourceNotFoundException ex){
+            throw new ResourceNotFoundException("User not found with UserId : "+ id);
+        }
+    }
+
+}
