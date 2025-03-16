@@ -1,6 +1,7 @@
 package com.socialMedia.ServiceImpl;
 
 import com.socialMedia.Entity.User;
+import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +23,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(int userId) {
         return userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User Not Found"));
+                .orElseThrow(() -> new ResourceNotFoundException("No user found with userId : " + userId));
     }
 
     @Override
     public List<User> getAllUsers() {
+        if (userRepository.findAll().isEmpty()) {
+            throw new ResourceNotFoundException("No users to display");
+        }
         return userRepository.findAll();
     }
 

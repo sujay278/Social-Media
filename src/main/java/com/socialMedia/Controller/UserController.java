@@ -1,7 +1,6 @@
 package com.socialMedia.Controller;
 
 import com.socialMedia.Entity.User;
-import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +14,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    //TODO Exception handling for all cases needs to be added
 
     @PostMapping("/user")
     public ResponseEntity<User> createUser(@RequestBody User user) {
@@ -40,12 +37,8 @@ public class UserController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable int id) {
-        try {
-            userService.deleteUser(id);
-            return ResponseEntity.ok("User with userId : " + id + " deleted successfully !");
-        } catch (ResourceNotFoundException ex) {
-            throw new ResourceNotFoundException("User not found with UserId : " + id);
-        }
+        userService.deleteUser(id);
+        return ResponseEntity.ok("User with userId : " + id + " deleted successfully !");
     }
 
 }
