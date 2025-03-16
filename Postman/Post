@@ -1,0 +1,130 @@
+{
+    "info": {
+        "_postman_id": "12345-67890",
+        "name": "Post Service APIs",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Post",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"caption\": \"First post!\",\n    \"user\": {\n        \"id\": 1\n    }\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/posts",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "posts"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get All Posts",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{base_url}}/posts",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "posts"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Post by ID",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{base_url}}/posts/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Get Posts by User ID",
+            "request": {
+                "method": "GET",
+                "url": {
+                    "raw": "{{base_url}}/users/1/posts",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "users",
+                        "1",
+                        "posts"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Update Post",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                    }
+                ],
+                "body": {
+                    "mode": "raw",
+                    "raw": "{\n    \"caption\": \"Updated caption!\"\n}"
+                },
+                "url": {
+                    "raw": "{{base_url}}/posts/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        },
+        {
+            "name": "Delete Post",
+            "request": {
+                "method": "DELETE",
+                "url": {
+                    "raw": "{{base_url}}/posts/1",
+                    "host": [
+                        "{{base_url}}"
+                    ],
+                    "path": [
+                        "posts",
+                        "1"
+                    ]
+                }
+            }
+        }
+    ],
+    "variable": [
+        {
+            "key": "base_url",
+            "value": "http://localhost:8989"
+        }
+    ]
+}
