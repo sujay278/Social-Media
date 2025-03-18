@@ -2,8 +2,10 @@ package com.socialMedia.ServiceImpl;
 
 import com.socialMedia.DTO.PostDTO;
 import com.socialMedia.Entity.Post;
+import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.PostRepository;
+import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +19,14 @@ public class PostServiceImpl implements PostService {
     @Autowired
     private PostRepository postRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
     public Post createPost(Post post) {
+        User user = userRepository.findById(post.getUser().getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("No user found with userId : " + post.getUser().getUserId()));
+        post.setUser(user);
         return postRepository.save(post);
     }
 
@@ -30,35 +38,40 @@ public class PostServiceImpl implements PostService {
                 post.getPostId(),
                 post.getDate(),
                 post.getCaption(),
-                post.getUser().getId()
+                post.getUser().getUserId()
         );
     }
 
     @Override
     public List<PostDTO> getAllPosts() {
-        if (postRepository.findAll().isEmpty()) {
+        List<Post> posts = postRepository.findAll();
+        if (posts.isEmpty()) {
             throw new ResourceNotFoundException("No posts to show");
         }
-        List<Post> posts = postRepository.findAll();
         return posts.stream().map(post -> new PostDTO(
                 post.getPostId(),
                 post.getDate(),
                 post.getCaption(),
-                post.getUser().getId()
+                post.getUser().getUserId()
         )).collect(Collectors.toList());
     }
 
     //TODO Post is not getting updated
     @Override
     public PostDTO updatePost(Post post) {
-        PostDTO existingPost = getPost(post.getPostId());
+
+        Post existingPost = postRepository.findById(post.getPostId())
+                .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + post.getPostId()));
+
         existingPost.setDate(post.getDate());
         existingPost.setCaption(post.getCaption());
+
+        Post updatedPost = postRepository.save(existingPost);
         return new PostDTO(
-                existingPost.getPostId(),
-                existingPost.getDate(),
-                existingPost.getCaption(),
-                existingPost.getUserId()
+                updatedPost.getPostId(),
+                updatedPost.getDate(),
+                updatedPost.getCaption(),
+                updatedPost.getUser().getUserId()
         );
     }
 
