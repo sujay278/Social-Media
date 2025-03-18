@@ -1,7 +1,6 @@
 package com.socialMedia.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,31 +8,28 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.sql.Date;
-import java.util.List;
 
 @Entity
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Post {
+@AllArgsConstructor
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int postId;
+    private int commentId;
 
     @NonNull
     @Temporal(TemporalType.DATE)
     private Date date = new Date(System.currentTimeMillis());
 
     @NonNull
-    private String caption;
+    private String comment;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", nullable = false)
+    @JoinColumn(name = "post_id", nullable = false)
     @JsonBackReference
-    private User user;
+    private Post post;
 
-    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Comment> comments;
+
 }
