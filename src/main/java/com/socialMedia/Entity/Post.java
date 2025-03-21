@@ -35,5 +35,6 @@ public class Post {
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
-    private List<Comment> comments;
+    private List<Comment> comments ;
+
 }
