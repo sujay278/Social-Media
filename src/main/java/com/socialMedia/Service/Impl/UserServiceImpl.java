@@ -1,4 +1,4 @@
-package com.socialMedia.ServiceImpl;
+package com.socialMedia.Service.Impl;
 
 import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;

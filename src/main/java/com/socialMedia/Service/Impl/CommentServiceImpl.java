@@ -1,4 +1,4 @@
-package com.socialMedia.ServiceImpl;
+package com.socialMedia.Service.Impl;
 
 import com.socialMedia.DTO.CommentDTO;
 import com.socialMedia.Entity.Comment;
@@ -76,14 +76,11 @@ public class CommentServiceImpl implements CommentService {
                 updatedComment.getComment(),
                 updatedComment.getPost().getPostId()
         );
-
-
     }
 
     @Override
     public void deleteComment(int commentId) {
         getComment(commentId);
         commentsRepository.deleteById(commentId);
-
     }
 }
