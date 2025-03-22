@@ -15,4 +15,9 @@ public interface UserService {
     User updateUser(User user);
 
     void deleteUser(int userId);
+
+    String registerUser(User user);
+
+    String login(String email, String password);
+
 }

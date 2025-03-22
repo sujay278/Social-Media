@@ -1,4 +1,4 @@
-package com.socialMedia.ServiceImpl;
+package com.socialMedia.Service.Impl;
 
 import com.socialMedia.DTO.PostDTO;
 import com.socialMedia.Entity.Post;
@@ -56,7 +56,6 @@ public class PostServiceImpl implements PostService {
         )).collect(Collectors.toList());
     }
 
-    //TODO Post is not getting updated
     @Override
     public PostDTO updatePost(Post post) {
 
