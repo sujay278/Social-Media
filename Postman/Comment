@@ -1,0 +1,62 @@
+import json
+
+# Define the Postman collection structure
+postman_collection = {
+    "info": {
+        "name": "Social Media Comment API",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Create Comment",
+            "request": {
+                "method": "POST",
+                "header": [
+                    {"key": "Content-Type", "value": "application/json"}
+                ],
+                "url": {"raw": "http://localhost:8989/comments/comment", "host": ["localhost:8989"], "path": ["comments", "comment"]},
+                "body": {
+                    "mode": "raw",
+                    "raw": json.dumps({"text": "Sample Comment", "postId": 1})
+                }
+            }
+        },
+        {
+            "name": "Get All Comments",
+            "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8989/comments", "host": ["localhost:8989"], "path": ["comments"]}
+            }
+        },
+        {
+            "name": "Get Comment by ID",
+            "request": {
+                "method": "GET",
+                "url": {"raw": "http://localhost:8989/comments/{id}", "host": ["localhost:8989"], "path": ["comments", ":id"]},
+                "description": "Replace {id} with a valid comment ID."
+            }
+        },
+        {
+            "name": "Update Comment",
+            "request": {
+                "method": "PUT",
+                "header": [
+                    {"key": "Content-Type", "value": "application/json"}
+                ],
+                "url": {"raw": "http://localhost:8989/comments/comment", "host": ["localhost:8989"], "path": ["comments", "comment"]},
+                "body": {
+                    "mode": "raw",
+                    "raw": json.dumps({"id": 1, "text": "Updated Comment"})
+                }
+            }
+        },
+        {
+            "name": "Delete Comment",
+            "request": {
+                "method": "DELETE",
+                "url": {"raw": "http://localhost:8989/comments/{id}", "host": ["localhost:8989"], "path": ["comments", ":id"]},
+                "description": "Replace {id} with the comment ID to delete."
+            }
+        }
+    ]
+}
