@@ -1,5 +1,6 @@
 package com.socialMedia.Controller;
 
+import com.socialMedia.DTO.UserDTO;
 import com.socialMedia.Entity.User;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +27,12 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers() {
+    public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
 
     @PutMapping("/user")
-    public ResponseEntity<User> updateUser(@RequestBody User user) {
+    public ResponseEntity<UserDTO> updateUser(@RequestBody User user) {
         return ResponseEntity.ok(userService.updateUser(user));
     }
 
@@ -39,6 +40,18 @@ public class UserController {
     public ResponseEntity<String> deleteUser(@PathVariable int id) {
         userService.deleteUser(id);
         return ResponseEntity.ok("User with userId : " + id + " deleted successfully !");
+    }
+
+    @PostMapping("/follow/{userId}")
+    public ResponseEntity<String> followUser(@PathVariable int userId) {
+        String response = userService.followUser(userId);
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping("/unfollow/{userId}")
+    public ResponseEntity<String> unfollowUser(@PathVariable int userId) {
+        String response = userService.unfollowUser(userId);
+        return ResponseEntity.ok(response);
     }
 
 }
