@@ -1,5 +1,6 @@
 package com.socialMedia.Service.Impl;
 
+import com.socialMedia.DTO.UserDTO;
 import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.UserRepository;
@@ -9,6 +10,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -24,27 +26,25 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+    // TODO Temporary hardcoded user ID (Replace with actual JWT extraction later)
+    private static final int LOGGED_IN_USER_ID = 1;
+
     @Override
-    public User getUser(int userId) {
-        return userRepository.findById(userId)
-                .orElseThrow(() -> new ResourceNotFoundException("No user found with userId : " + userId));
+    public UserDTO getUser(int userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+        return new UserDTO(user);
     }
 
     @Override
-    public List<User> getAllUsers() {
-        if (userRepository.findAll().isEmpty()) {
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
             throw new ResourceNotFoundException("No users to display");
         }
-        return userRepository.findAll();
-    }
-
-    @Override
-    public User updateUser(User user) {
-        User existingUser = getUser(user.getUserId());
-        existingUser.setName(user.getName());
-        existingUser.setUsername(user.getUsername());
-        existingUser.setEmail(user.getEmail());
-        return userRepository.save(existingUser);
+        return users.stream()
+                .map(UserDTO::new) // Convert User to UserDTO
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -72,4 +72,66 @@ public class UserServiceImpl implements UserService {
         return "Login successful!"; // JWT can be added here later
     }
 
+    @Override
+    public UserDTO updateUser(User user) {
+        User existingUser = userRepository.findById(user.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        existingUser.setName(user.getName());
+        existingUser.setUsername(user.getUsername());
+        existingUser.setEmail(user.getEmail());
+
+        User updatedUser = userRepository.save(existingUser);
+
+        return new UserDTO(updatedUser); // Convert User to UserDTO before returning
+    }
+
+    @Override
+    public String followUser(int userId) {
+        User loggedInUser = userRepository.findById(LOGGED_IN_USER_ID)
+                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
+
+        User userToFollow = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User to follow not found"));
+
+        if (loggedInUser.equals(userToFollow)) {
+            return "You cannot follow yourself.";
+        }
+
+        if (loggedInUser.getFollowing().contains(userToFollow)) {
+            return "Already following this user.";
+        }
+
+        loggedInUser.getFollowing().add(userToFollow);
+        userToFollow.getFollowers().add(loggedInUser);
+
+        userRepository.save(loggedInUser);
+        userRepository.save(userToFollow);
+
+        return "Successfully followed user: " + userToFollow.getUsername();
+    }
+
+    @Override
+    public String unfollowUser(int userId) {
+        User loggedInUser = userRepository.findById(LOGGED_IN_USER_ID)
+                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
+
+        User userToUnfollow = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User to unfollow not found"));
+
+        if (loggedInUser.equals(userToUnfollow)) {
+            return "You cannot unfollow yourself.";
+        }
+
+        if (!loggedInUser.getFollowing().contains(userToUnfollow)) {
+            return "You are not following this user.";
+        }
+
+        loggedInUser.getFollowing().remove(userToUnfollow);
+        userToUnfollow.getFollowers().remove(loggedInUser);
+
+        userRepository.save(loggedInUser);
+        userRepository.save(userToUnfollow);
+
+        return "Successfully unfollowed user: " + userToUnfollow.getUsername();
+    }
 }
