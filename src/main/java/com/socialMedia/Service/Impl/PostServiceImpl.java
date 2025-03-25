@@ -1,6 +1,5 @@
 package com.socialMedia.Service.Impl;
 
-import com.socialMedia.DTO.PostDTO;
 import com.socialMedia.Entity.Post;
 import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
@@ -11,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -31,33 +30,20 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public PostDTO getPost(int postId) {
-        Post post = postRepository.findById(postId)
+    public Post getPost(int postId) {
+        return postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + postId));
-        return new PostDTO(
-                post.getPostId(),
-                post.getDate(),
-                post.getCaption(),
-                post.getUser().getUserId()
-        );
     }
 
     @Override
-    public List<PostDTO> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        if (posts.isEmpty()) {
-            throw new ResourceNotFoundException("No posts to show");
-        }
-        return posts.stream().map(post -> new PostDTO(
-                post.getPostId(),
-                post.getDate(),
-                post.getCaption(),
-                post.getUser().getUserId()
-        )).collect(Collectors.toList());
+    public List<Post> getAllPosts() {
+        return Optional.of(postRepository.findAll().stream().toList())
+                .filter(list -> !list.isEmpty())
+                .orElseThrow(() -> new ResourceNotFoundException("No posts to show"));
     }
 
     @Override
-    public PostDTO updatePost(Post post) {
+    public Post updatePost(Post post) {
 
         Post existingPost = postRepository.findById(post.getPostId())
                 .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + post.getPostId()));
@@ -65,13 +51,7 @@ public class PostServiceImpl implements PostService {
         existingPost.setDate(post.getDate());
         existingPost.setCaption(post.getCaption());
 
-        Post updatedPost = postRepository.save(existingPost);
-        return new PostDTO(
-                updatedPost.getPostId(),
-                updatedPost.getDate(),
-                updatedPost.getCaption(),
-                updatedPost.getUser().getUserId()
-        );
+        return postRepository.save(existingPost);
     }
 
     @Override
