@@ -33,12 +33,6 @@ public class PostServiceImpl implements PostService {
     public Post getPost(int postId) {
         return postRepository.findById(postId)
                 .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + postId));
-       /* return new PostDTO(
-                post.getPostId(),
-                post.getDate(),
-                post.getCaption(),
-                post.getUser().getUserId()
-        );*/
     }
 
     @Override
