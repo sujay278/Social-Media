@@ -31,5 +31,5 @@ public class Comment {
     @JsonBackReference
     private Post post;
 
-
+    private int userId;
 }

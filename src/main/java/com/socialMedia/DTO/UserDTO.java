@@ -37,7 +37,9 @@ public class UserDTO {
                 .collect(Collectors.toMap(User::getUserId, User::getUsername));
 
         this.posts = user.getPosts().stream()
-                .map(post -> new PostDTO(post.getPostId(), post.getDate(), post.getCaption(), user.getUserId()))
+                .map(PostDTO::new)
                 .collect(Collectors.toList());
+
+
     }
 }

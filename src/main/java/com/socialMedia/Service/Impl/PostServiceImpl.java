@@ -1,5 +1,6 @@
 package com.socialMedia.Service.Impl;
 
+import com.socialMedia.DTO.PostDTO;
 import com.socialMedia.Entity.Post;
 import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
@@ -8,9 +9,10 @@ import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class PostServiceImpl implements PostService {
@@ -36,13 +38,14 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> getAllPosts() {
-        return Optional.of(postRepository.findAll().stream().toList())
-                .filter(list -> !list.isEmpty())
-                .orElseThrow(() -> new ResourceNotFoundException("No posts to show"));
+    public List<PostDTO> getAllPosts() {
+        return postRepository.findAll().stream()
+                .map(PostDTO::new)
+                .collect(Collectors.toList());
     }
 
     @Override
+    @Transactional
     public Post updatePost(Post post) {
 
         Post existingPost = postRepository.findById(post.getPostId())

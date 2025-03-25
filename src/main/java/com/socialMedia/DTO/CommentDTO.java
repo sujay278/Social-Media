@@ -1,5 +1,6 @@
 package com.socialMedia.DTO;
 
+import com.socialMedia.Entity.Comment;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,14 @@ public class CommentDTO {
     private Date date;
     private String comment;
     private int postId;
+    private int userId;
+
+    // Constructor to map Entity to DTO
+    public CommentDTO(Comment comment) {
+        this.commentId = comment.getCommentId();
+        this.date = comment.getDate();
+        this.comment = comment.getComment();
+        this.postId = comment.getPost().getPostId();
+        this.userId = comment.getUserId();
+    }
 }
