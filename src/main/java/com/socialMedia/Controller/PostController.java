@@ -1,6 +1,5 @@
 package com.socialMedia.Controller;
 
-import com.socialMedia.DTO.PostDTO;
 import com.socialMedia.Entity.Post;
 import com.socialMedia.Service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,17 +21,17 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PostDTO>> getAllPosts(){
+    public ResponseEntity<List<Post>> getAllPosts() {
         return ResponseEntity.ok(postService.getAllPosts());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PostDTO> getPost(@PathVariable int id){
+    public ResponseEntity<Post> getPost(@PathVariable int id) {
         return ResponseEntity.ok(postService.getPost(id));
     }
 
     @PutMapping("/post")
-    public ResponseEntity<PostDTO> updatePost(@RequestBody Post post){
+    public ResponseEntity<Post> updatePost(@RequestBody Post post) {
         return ResponseEntity.ok(postService.updatePost(post));
     }
 
