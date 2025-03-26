@@ -24,4 +24,6 @@ public interface UserService {
     String followUser(int userId);
 
     String unfollowUser(int userId);
+
+    UserDTO getUserByUsername(String username);
 }

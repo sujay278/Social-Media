@@ -136,4 +136,12 @@ public class UserServiceImpl implements UserService {
 
         return "Successfully unfollowed user: " + userToUnfollow.getUsername();
     }
+
+    @Override
+    public UserDTO getUserByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
+        return new UserDTO(user);
+    }
+
 }
