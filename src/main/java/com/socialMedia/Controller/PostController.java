@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/posts")
@@ -41,5 +42,16 @@ public class PostController {
         postService.deletePost(id);
         return ResponseEntity.ok("Post with postId : " + id + " deleted successfully !");
     }
+
+    @GetMapping("/userid/{userId}")
+    public ResponseEntity<List<Map<String, Object>>> getUserPostsById(@PathVariable int userId) {
+        return ResponseEntity.ok(postService.getPostsByUserId(userId));
+    }
+
+    @GetMapping("username/{username}")
+    public ResponseEntity<List<Map<String, Object>>> getPostsByUsername(@PathVariable String username) {
+        return ResponseEntity.ok(postService.getPostsByUsername(username));
+    }
+
 
 }

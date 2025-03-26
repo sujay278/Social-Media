@@ -7,11 +7,13 @@ import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.PostRepository;
 import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.PostService;
+import com.socialMedia.Utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -61,5 +63,22 @@ public class PostServiceImpl implements PostService {
     public void deletePost(int postId) {
         getPost(postId);
         postRepository.deleteById(postId);
+    }
+
+    @Override
+    public List<Map<String, Object>> getPostsByUserId(int userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId));
+
+        return CommonUtils.getPostOfUser(user);
+    }
+
+
+    @Override
+    public List<Map<String, Object>> getPostsByUsername(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
+
+        return CommonUtils.getPostOfUser(user);
     }
 }

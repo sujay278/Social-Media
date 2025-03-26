@@ -52,7 +52,7 @@ public class CommentServiceImpl implements CommentService {
         existingComment.setDate(comment.getDate());
         Comment updatedComment = commentsRepository.save(existingComment);
 
-        return new CommentDTO(updatedComment); // Using constructor
+        return new CommentDTO(updatedComment);
     }
 
     @Override
