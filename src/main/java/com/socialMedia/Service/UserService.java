@@ -1,6 +1,7 @@
 package com.socialMedia.Service;
 
 
+import com.socialMedia.DTO.LoginRequest;
 import com.socialMedia.DTO.UserDTO;
 import com.socialMedia.Entity.User;
 
@@ -19,7 +20,7 @@ public interface UserService {
 
     String registerUser(User user);
 
-    String login(String email, String password);
+    String login(LoginRequest request);
 
     String followUser(int userId);
 
