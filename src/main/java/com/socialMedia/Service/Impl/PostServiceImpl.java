@@ -70,15 +70,14 @@ public class PostServiceImpl implements PostService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with ID: " + userId));
 
-        return CommonUtils.getPostOfUser(user);
+        return CommonUtils.getPostsOfUser(user);
     }
-
 
     @Override
     public List<Map<String, Object>> getPostsByUsername(String username) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
 
-        return CommonUtils.getPostOfUser(user);
+        return CommonUtils.getPostsOfUser(user);
     }
 }

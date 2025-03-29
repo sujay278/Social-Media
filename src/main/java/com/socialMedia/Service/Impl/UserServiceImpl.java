@@ -1,5 +1,6 @@
 package com.socialMedia.Service.Impl;
 
+import com.socialMedia.DTO.LoginRequest;
 import com.socialMedia.DTO.UserDTO;
 import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
@@ -65,12 +66,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String login(String email, String password) {
-        User user = userRepository.findByEmail(email).orElse(null);
-        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
+    public String login(LoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail()).orElse(null);
+        if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             return "Invalid credentials!";
         }
-        return "Login successful!"; // JWT can be added here later
+        return "Login successful!";
     }
 
     @Override
@@ -84,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
         User updatedUser = userRepository.save(existingUser);
 
-        return new UserDTO(updatedUser); // Convert User to UserDTO before returning
+        return new UserDTO(updatedUser);
     }
 
     @Override
