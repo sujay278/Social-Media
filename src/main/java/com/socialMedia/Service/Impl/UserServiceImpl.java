@@ -1,5 +1,6 @@
 package com.socialMedia.Service.Impl;
 
+import com.socialMedia.Config.Securiy.JwtUtil;
 import com.socialMedia.DTO.LoginRequest;
 import com.socialMedia.DTO.UserDTO;
 import com.socialMedia.Entity.User;
@@ -7,6 +8,9 @@ import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +26,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private UserDetailsService userDetailsService;
 
     @Override
     public User createUser(User user) {
@@ -67,11 +77,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String login(LoginRequest request) {
-        User user = userRepository.findByEmail(request.getEmail()).orElse(null);
-        if (user == null || !passwordEncoder.matches(request.getPassword(), user.getPassword())) {
-            return "Invalid credentials!";
+        User user = userRepository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+            throw new RuntimeException("Invalid credentials!");
         }
-        return "Login successful!";
+
+        return jwtUtil.generateToken(user.getEmail());
     }
 
     @Override
@@ -88,9 +101,35 @@ public class UserServiceImpl implements UserService {
         return new UserDTO(updatedUser);
     }
 
-    @Override
+    /*@Override
     public String followUser(int userId) {
         User loggedInUser = userRepository.findById(LOGGED_IN_USER_ID)
+                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
+
+        User userToFollow = userRepository.findById(userId)
+                .orElseThrow(() -> new RuntimeException("User to follow not found"));
+
+        if (loggedInUser.equals(userToFollow)) {
+            return "You cannot follow yourself.";
+        }
+
+        if (loggedInUser.getFollowing().contains(userToFollow)) {
+            return "Already following this user.";
+        }
+
+        loggedInUser.getFollowing().add(userToFollow);
+        userToFollow.getFollowers().add(loggedInUser);
+
+        userRepository.save(loggedInUser);
+        userRepository.save(userToFollow);
+
+        return "Successfully followed user: " + userToFollow.getUsername();
+    }*/
+    @Override
+    public String followUser(int userId) {
+        String email = getLoggedInUserEmail();
+
+        User loggedInUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
 
         User userToFollow = userRepository.findById(userId)
@@ -115,7 +154,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String unfollowUser(int userId) {
-        User loggedInUser = userRepository.findById(LOGGED_IN_USER_ID)
+        String email = getLoggedInUserEmail();
+
+        User loggedInUser = userRepository.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
 
         User userToUnfollow = userRepository.findById(userId)
@@ -143,6 +184,17 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new ResourceNotFoundException("User not found with username: " + username));
         return new UserDTO(user);
+    }
+
+    // Extract logged-in user's email from Spring Security context
+    private String getLoggedInUserEmail() {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails) principal).getUsername();
+        } else {
+            throw new RuntimeException("User not authenticated");
+        }
     }
 
 }
