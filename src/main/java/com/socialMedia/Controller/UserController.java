@@ -59,5 +59,15 @@ public class UserController {
         return ResponseEntity.ok(userService.getUserByUsername(username));
     }
 
+    @GetMapping("/followers")
+    public ResponseEntity<List<Object>> getFollowers() {
+        return ResponseEntity.ok(userService.getFollowers());
+    }
+
+    @GetMapping("/followings")
+    public ResponseEntity<List<Object>> getFollowings() {
+        return ResponseEntity.ok(userService.getFollowings());
+    }
+
 
 }
