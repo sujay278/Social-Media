@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -101,36 +102,10 @@ public class UserServiceImpl implements UserService {
         return new UserDTO(updatedUser);
     }
 
-    /*@Override
-    public String followUser(int userId) {
-        User loggedInUser = userRepository.findById(LOGGED_IN_USER_ID)
-                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
-
-        User userToFollow = userRepository.findById(userId)
-                .orElseThrow(() -> new RuntimeException("User to follow not found"));
-
-        if (loggedInUser.equals(userToFollow)) {
-            return "You cannot follow yourself.";
-        }
-
-        if (loggedInUser.getFollowing().contains(userToFollow)) {
-            return "Already following this user.";
-        }
-
-        loggedInUser.getFollowing().add(userToFollow);
-        userToFollow.getFollowers().add(loggedInUser);
-
-        userRepository.save(loggedInUser);
-        userRepository.save(userToFollow);
-
-        return "Successfully followed user: " + userToFollow.getUsername();
-    }*/
     @Override
     public String followUser(int userId) {
-        String email = getLoggedInUserEmail();
 
-        User loggedInUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
+        User loggedInUser = getLoggedInUser();
 
         User userToFollow = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User to follow not found"));
@@ -154,10 +129,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String unfollowUser(int userId) {
-        String email = getLoggedInUserEmail();
 
-        User loggedInUser = userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
+        User loggedInUser = getLoggedInUser();
 
         User userToUnfollow = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User to unfollow not found"));
@@ -186,12 +159,32 @@ public class UserServiceImpl implements UserService {
         return new UserDTO(user);
     }
 
-    // Extract logged-in user's email from Spring Security context
-    private String getLoggedInUserEmail() {
+    @Override
+    public List<Object> getFollowers() {
+        return getLoggedInUser().getFollowers().stream()
+                .map(follower -> Map.of(
+                        "userId", follower.getUserId(),
+                        "username", follower.getUsername()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Object> getFollowings() {
+        return List.of(getLoggedInUser().getFollowing().stream()
+                .map(following -> Map.of(
+                        "userId", following.getUserId(),
+                        "username", following.getUsername()
+                )));
+    }
+
+    // Extract logged-in user from Spring Security context
+    private User getLoggedInUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         if (principal instanceof UserDetails) {
-            return ((UserDetails) principal).getUsername();
+            return userRepository.findByEmail(((UserDetails) principal).getUsername())
+                    .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
         } else {
             throw new RuntimeException("User not authenticated");
         }
