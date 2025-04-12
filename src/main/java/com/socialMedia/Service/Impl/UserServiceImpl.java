@@ -8,6 +8,7 @@ import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CompromisedPasswordChecker compromisedPasswordChecker;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -71,9 +75,14 @@ public class UserServiceImpl implements UserService {
         if (userRepository.findByEmail(user.getEmail()).isPresent()) {
             return "User with this email already registered!";
         }
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
-        return "User registered successfully!";
+        boolean strongPassword = compromisedPasswordChecker.check(user.getPassword()).isCompromised();
+        if(!strongPassword){
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            userRepository.save(user);
+            return "User registered successfully!";
+        }else{
+            return "Dude find a better password";
+        }
     }
 
     @Override
