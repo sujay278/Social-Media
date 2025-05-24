@@ -19,9 +19,9 @@
                     "raw": "{\n    \"name\": \"John Doe\",\n    \"userName\": \"john_doe\",\n    \"email\": \"john.doe@example.com\"\n}"
                 },
                 "url": {
-                    "raw": "http://localhost:8989/api/users/user",
+                    "raw": "http://localhost:8989/katta/api/users/user",
                     "host": [
-                        "http://localhost:8989"
+                        "http://localhost:8989/katta"
                     ],
                     "path": [
                         "api",
@@ -35,9 +35,9 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "http://localhost:8989/api/users/1",
+                    "raw": "http://localhost:8989/katta/api/users/1",
                     "host": [
-                        "http://localhost:8989"
+                        "http://localhost:8989/katta"
                     ],
                     "path": [
                         "api",
@@ -52,9 +52,9 @@
             "request": {
                 "method": "GET",
                 "url": {
-                    "raw": "http://localhost:8989/api/users/",
+                    "raw": "http://localhost:8989/katta/api/users/",
                     "host": [
-                        "http://localhost:8989"
+                        "http://localhost:8989/katta"
                     ],
                     "path": [
                         "api",
@@ -78,9 +78,9 @@
                     "raw": "{\n    \"id\": 1,\n    \"name\": \"John Updated\",\n    \"userName\": \"john_updated\",\n    \"email\": \"john.updated@example.com\"\n}"
                 },
                 "url": {
-                    "raw": "http://localhost:8989/api/users/user",
+                    "raw": "http://localhost:8989/katta/api/users/user",
                     "host": [
-                        "http://localhost:8989"
+                        "http://localhost:8989/katta"
                     ],
                     "path": [
                         "api",
@@ -94,9 +94,9 @@
             "request": {
                 "method": "DELETE",
                 "url": {
-                    "raw": "http://localhost:8989/api/users/1",
+                    "raw": "http://localhost:8989/katta/api/users/1",
                     "host": [
-                        "http://localhost:8989"
+                        "http://localhost:8989/katta"
                     ],
                     "path": [
                         "api",

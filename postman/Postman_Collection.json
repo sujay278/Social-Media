@@ -96,7 +96,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/users/user",
+              "raw": "http://localhost:8989/katta/users/user",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -122,7 +122,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/users/1",
+              "raw": "http://localhost:8989/katta/users/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -151,7 +151,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/users",
+              "raw": "http://localhost:8989/katta/users",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -185,7 +185,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/users/user",
+              "raw": "http://localhost:8989/katta/users/user",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -211,7 +211,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/users/1",
+              "raw": "http://localhost:8989/katta/users/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -237,7 +237,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/users/username/rishabh_newaskar",
+              "raw": "http://localhost:8989/katta/users/username/rishabh_newaskar",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -273,7 +273,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/users/follow/1",
+              "raw": "http://localhost:8989/katta/users/follow/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -300,7 +300,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/users/unfollow/2",
+              "raw": "http://localhost:8989/katta/users/unfollow/2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -362,7 +362,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/posts/post",
+              "raw": "http://localhost:8989/katta/posts/post",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -388,7 +388,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/posts",
+              "raw": "http://localhost:8989/katta/posts",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -413,7 +413,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/posts/1",
+              "raw": "http://localhost:8989/katta/posts/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -455,7 +455,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/posts/post",
+              "raw": "http://localhost:8989/katta/posts/post",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -490,7 +490,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/posts/2",
+              "raw": "http://localhost:8989/katta/posts/2",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -516,7 +516,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/posts/userid/1",
+              "raw": "http://localhost:8989/katta/posts/userid/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -543,7 +543,7 @@
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/posts/username/sujay_devne",
+              "raw": "http://localhost:8989/katta/posts/username/sujay_devne",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -638,7 +638,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/comments/comment",
+              "raw": "http://localhost:8989/katta/comments/comment",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -658,7 +658,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8989/comments",
+              "raw": "http://localhost:8989/katta/comments",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -677,7 +677,7 @@
             "method": "GET",
             "header": [],
             "url": {
-              "raw": "http://localhost:8989/comments/1",
+              "raw": "http://localhost:8989/katta/comments/1",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -766,7 +766,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/comments/comment",
+              "raw": "http://localhost:8989/katta/comments/comment",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -786,7 +786,7 @@
             "method": "DELETE",
             "header": [],
             "url": {
-              "raw": "http://localhost:8989/comments/3",
+              "raw": "http://localhost:8989/katta/comments/3",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -826,7 +826,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/auth/signup",
+              "raw": "http://localhost:8989/katta/auth/signup",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -865,7 +865,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/auth/login",
+              "raw": "http://localhost:8989/katta/auth/login",
               "protocol": "http",
               "host": [
                 "localhost"
