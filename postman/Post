@@ -124,7 +124,7 @@
     "variable": [
         {
             "key": "base_url",
-            "value": "http://localhost:8989"
+            "value": "http://localhost:8989/katta"
         }
     ]
 }

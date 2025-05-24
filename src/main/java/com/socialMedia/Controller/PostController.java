@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/posts")
+@RequestMapping("/katta/posts")
 public class PostController {
 
     @Autowired
