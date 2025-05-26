@@ -26,6 +26,11 @@ public class UserController {
         return ResponseEntity.ok(userService.getUser(id));
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<?> getLoggedInUser() {
+        return ResponseEntity.ok(userService.getCurrentUser());
+    }
+
     @GetMapping
     public ResponseEntity<List<UserDTO>> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());

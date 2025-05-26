@@ -43,9 +43,6 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
-    // TODO Temporary hardcoded user ID (Replace with actual JWT extraction later)
-    private static final int LOGGED_IN_USER_ID = 1;
-
     @Override
     public UserDTO getUser(int userId) {
         User user = userRepository.findById(userId)
@@ -185,6 +182,11 @@ public class UserServiceImpl implements UserService {
                         "userId", following.getUserId(),
                         "username", following.getUsername()
                 )));
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return getLoggedInUser();
     }
 
     // Extract logged-in user from Spring Security context

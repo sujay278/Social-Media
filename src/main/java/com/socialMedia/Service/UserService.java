@@ -31,4 +31,6 @@ public interface UserService {
     List<Object> getFollowers();
 
     List<Object> getFollowings();
+
+    User getCurrentUser();
 }
