@@ -185,8 +185,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getCurrentUser() {
-        return getLoggedInUser();
+    public UserDTO getCurrentUser() {
+        return new UserDTO(getLoggedInUser());
     }
 
     // Extract logged-in user from Spring Security context
