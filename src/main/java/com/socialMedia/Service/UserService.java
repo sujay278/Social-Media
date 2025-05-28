@@ -32,5 +32,5 @@ public interface UserService {
 
     List<Object> getFollowings();
 
-    User getCurrentUser();
+    UserDTO getCurrentUser();
 }
