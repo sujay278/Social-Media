@@ -1,5 +1,6 @@
 package com.socialMedia.Config.Securiy;
 
+import com.socialMedia.Utils.Constants;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
@@ -13,11 +14,8 @@ import java.util.function.Function;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "eW91ci1zZWNyZXQta2V5LWdlbmVyYXRlZC1oZXJleW91ci1zZWNyZXQta2V5LWdlbmVyYXRlZC1oZXJl"; // Keep this secure
-    private static final long EXPIRATION_TIME = 15 * 60 * 1000; // 15 minutes
-
     private Key getSigningKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+        byte[] keyBytes = Decoders.BASE64.decode(Constants.SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -25,7 +23,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .setExpiration(new Date(System.currentTimeMillis() + Constants.EXPIRATION_TIME))
                 .signWith(getSigningKey())
                 .compact();
     }

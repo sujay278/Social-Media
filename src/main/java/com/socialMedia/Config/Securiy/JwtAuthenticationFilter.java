@@ -1,5 +1,6 @@
 package com.socialMedia.Config.Securiy;
 
+import com.socialMedia.Utils.Constants;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,9 +26,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(Constants.AUTHORIZATION);
 
-        if (token != null && token.startsWith("Bearer ")) {
+        if (token != null && token.startsWith(Constants.BEARER_)) {
             token = token.substring(7);
             String email = jwtUtil.extractEmail(token);
 
