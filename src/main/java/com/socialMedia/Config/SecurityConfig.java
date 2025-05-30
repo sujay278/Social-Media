@@ -2,6 +2,7 @@ package com.socialMedia.Config;
 
 import com.socialMedia.Config.Securiy.JwtAuthenticationFilter;
 import com.socialMedia.Service.Impl.CustomUserDetailsService;
+import com.socialMedia.Utils.Constants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -70,7 +71,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowedOrigins(List.of("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(Arrays.asList(Constants.GET, Constants.POST, Constants.PUT, Constants.DELETE, Constants.OPTIONS));
         configuration.setAllowedHeaders(List.of("*")); // Allow all headers
         configuration.setAllowCredentials(true);
 
