@@ -1,13 +1,14 @@
 package com.socialMedia.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
-import java.sql.Date;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 
 @Entity
 @Data
@@ -19,11 +20,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int commentId;
 
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    private Date date = new Date(System.currentTimeMillis());
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    private OffsetDateTime timestamp = OffsetDateTime.now(ZoneOffset.UTC);
 
-    @NonNull
     private String comment;
 
     @ManyToOne
