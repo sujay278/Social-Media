@@ -30,7 +30,7 @@ public interface UserService {
 
     List<Object> getFollowers();
 
-    List<Object> getFollowings();
+    List<UserDTO> getFollowings();
 
     UserDTO getCurrentUser();
 }

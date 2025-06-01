@@ -7,10 +7,9 @@ import com.socialMedia.Entity.User;
 import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.UserRepository;
 import com.socialMedia.Service.UserService;
+import com.socialMedia.Utils.CommonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.password.CompromisedPasswordChecker;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,18 +24,16 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private PasswordEncoder passwordEncoder;
-
     @Autowired
     private CompromisedPasswordChecker compromisedPasswordChecker;
-
     @Autowired
     private JwtUtil jwtUtil;
-
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private CommonUtils commonUtils;
 
     @Override
     public User createUser(User user) {
@@ -111,7 +108,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String followUser(int userId) {
 
-        User loggedInUser = getLoggedInUser();
+        User loggedInUser = commonUtils.getLoggedInUser();
 
         User userToFollow = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User to follow not found"));
@@ -136,7 +133,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public String unfollowUser(int userId) {
 
-        User loggedInUser = getLoggedInUser();
+        User loggedInUser = commonUtils.getLoggedInUser();
 
         User userToUnfollow = userRepository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User to unfollow not found"));
@@ -167,7 +164,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<Object> getFollowers() {
-        return getLoggedInUser().getFollowers().stream()
+        return commonUtils.getLoggedInUser().getFollowers().stream()
                 .map(follower -> Map.of(
                         "userId", follower.getUserId(),
                         "username", follower.getUsername()
@@ -176,29 +173,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Object> getFollowings() {
-        return List.of(getLoggedInUser().getFollowing().stream()
-                .map(following -> Map.of(
-                        "userId", following.getUserId(),
-                        "username", following.getUsername()
-                )));
+    public List<UserDTO> getFollowings() {
+        return commonUtils.getLoggedInUser().getFollowing().stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toList());
     }
 
     @Override
     public UserDTO getCurrentUser() {
-        return new UserDTO(getLoggedInUser());
+        return new UserDTO(commonUtils.getLoggedInUser());
     }
-
-    // Extract logged-in user from Spring Security context
-    private User getLoggedInUser() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            return userRepository.findByEmail(((UserDetails) principal).getUsername())
-                    .orElseThrow(() -> new RuntimeException("Logged-in user not found"));
-        } else {
-            throw new RuntimeException("User not authenticated");
-        }
-    }
-
 }

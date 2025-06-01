@@ -70,7 +70,7 @@ public class UserController {
     }
 
     @GetMapping("/followings")
-    public ResponseEntity<List<Object>> getFollowings() {
+    public ResponseEntity<List<UserDTO>> getFollowings() {
         return ResponseEntity.ok(userService.getFollowings());
     }
 

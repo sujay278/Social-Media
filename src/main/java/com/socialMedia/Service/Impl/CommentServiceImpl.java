@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("No comment found with commentId: " + comment.getCommentId()));
 
         existingComment.setComment(comment.getComment());
-        existingComment.setDate(comment.getDate());
+        existingComment.setTimestamp(comment.getTimestamp());
         Comment updatedComment = commentsRepository.save(existingComment);
 
         return new CommentDTO(updatedComment);

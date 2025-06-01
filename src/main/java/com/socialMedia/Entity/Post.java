@@ -1,14 +1,15 @@
 package com.socialMedia.Entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
-import java.sql.Date;
+import java.time.OffsetDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 
 @Entity
@@ -21,11 +22,9 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int postId;
 
-    @NonNull
-    @Temporal(TemporalType.DATE)
-    private Date date = new Date(System.currentTimeMillis());
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSX")
+    private OffsetDateTime timestamp = OffsetDateTime.now(ZoneOffset.UTC);
 
-    @NonNull
     private String caption;
 
     @ManyToOne

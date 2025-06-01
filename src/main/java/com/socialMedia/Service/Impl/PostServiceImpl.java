@@ -21,14 +21,14 @@ public class PostServiceImpl implements PostService {
 
     @Autowired
     private PostRepository postRepository;
-
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private CommonUtils commonUtils;
 
     @Override
     public Post createPost(Post post) {
-        User user = userRepository.findById(post.getUser().getUserId())
-                .orElseThrow(() -> new ResourceNotFoundException("No user found with userId : " + post.getUser().getUserId()));
+        User user = commonUtils.getLoggedInUser();
         post.setUser(user);
         return postRepository.save(post);
     }
@@ -53,7 +53,7 @@ public class PostServiceImpl implements PostService {
         Post existingPost = postRepository.findById(post.getPostId())
                 .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + post.getPostId()));
 
-        existingPost.setDate(post.getDate());
+        existingPost.setTimestamp(post.getTimestamp());
         existingPost.setCaption(post.getCaption());
 
         return postRepository.save(existingPost);
