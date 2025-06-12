@@ -6,11 +6,14 @@ import com.socialMedia.Exception.ResourceNotFoundException;
 import com.socialMedia.Repository.CommentsRepository;
 import com.socialMedia.Repository.PostRepository;
 import com.socialMedia.Service.CommentService;
+import com.socialMedia.Utils.CommonUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,9 +26,13 @@ public class CommentServiceImpl implements CommentService {
 
     @Autowired
     private PostRepository postRepository;
+    @Autowired
+    private CommonUtils commonUtils;
 
     @Override
     public Comment createComment(Comment comment) {
+        int commenterId = commonUtils.getLoggedInUser().getUserId();
+        comment.setCommenterId(commenterId);
         return commentsRepository.save(comment);
     }
 
@@ -49,9 +56,8 @@ public class CommentServiceImpl implements CommentService {
                 .orElseThrow(() -> new ResourceNotFoundException("No comment found with commentId: " + comment.getCommentId()));
 
         existingComment.setComment(comment.getComment());
-        existingComment.setTimestamp(comment.getTimestamp());
+        existingComment.setTimestamp(ZonedDateTime.now(ZoneId.of("Asia/Kolkata")));
         Comment updatedComment = commentsRepository.save(existingComment);
-
         return new CommentDTO(updatedComment);
     }
 
