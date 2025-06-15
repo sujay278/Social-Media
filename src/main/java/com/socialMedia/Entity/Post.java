@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -35,4 +36,7 @@ public class Post {
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Comment> comments;
+
+    @ManyToMany
+    private List<User> likedBy = new ArrayList<>();
 }

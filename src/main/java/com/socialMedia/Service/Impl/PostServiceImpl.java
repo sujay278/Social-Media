@@ -80,4 +80,32 @@ public class PostServiceImpl implements PostService {
 
         return CommonUtils.getPostsOfUser(user);
     }
+
+    @Override
+    public String likePost(int postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + postId));
+        User user = commonUtils.getLoggedInUser();
+
+        if (!post.getLikedBy().contains(user)) {
+            post.getLikedBy().add(user);
+            postRepository.save(post);
+            return "Post liked successfully.";
+        }
+        return "You already like this post.";
+    }
+
+    @Override
+    public String unLikePost(int postId) {
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("No post found with postId : " + postId));
+        final User user = commonUtils.getLoggedInUser();
+
+        if (post.getLikedBy().contains(user)) {
+            post.getLikedBy().remove(user);
+            postRepository.save(post);
+            return "Post unliked successfully.";
+        }
+        return "You do not like this post to unlike.";
+    }
 }
