@@ -17,61 +17,51 @@
               {
                 "key": "Cookie",
                 "value": "JSESSIONID=B3364417F1D955E38A22775F06D8EF02",
-                "name": "cookie",
                 "type": "text"
               },
               {
                 "key": "Cache-Control",
                 "value": "no-cache",
-                "name": "cache-control",
                 "type": "text"
               },
               {
                 "key": "Postman-Token",
                 "value": "<calculated when request is sent>",
-                "name": "postman-token",
                 "type": "text"
               },
               {
                 "key": "Content-Type",
                 "value": "text/plain",
-                "name": "content-type",
                 "type": "text"
               },
               {
                 "key": "Content-Length",
                 "value": "<calculated when request is sent>",
-                "name": "content-length",
                 "type": "text"
               },
               {
                 "key": "Host",
                 "value": "<calculated when request is sent>",
-                "name": "host",
                 "type": "text"
               },
               {
                 "key": "User-Agent",
                 "value": "PostmanRuntime/7.39.1",
-                "name": "user-agent",
                 "type": "text"
               },
               {
                 "key": "Accept",
                 "value": "*/*",
-                "name": "accept",
                 "type": "text"
               },
               {
                 "key": "Accept-Encoding",
                 "value": "gzip, deflate, br",
-                "name": "accept-encoding",
                 "type": "text"
               },
               {
                 "key": "Connection",
                 "value": "keep-alive",
-                "name": "connection",
                 "type": "text"
               },
               {
@@ -81,14 +71,13 @@
               },
               {
                 "key": "Authorization",
-                "value": "",
-                "type": "text",
-                "disabled": true
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0OTk4MTA1NiwiZXhwIjoxNzQ5OTg0NjU2fQ.ynrhCVe2Ubfh7ElRUjGlOHcL6ixgOcqtp0ZAbTruA-Pn_4c9dBlYVBppZd1NOJjO",
+                "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Ananya Sharma\",\r\n    \"user_name\": \"ananya_sharma\",\r\n    \"email\": \"ananya_sharma@zmail.com\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Sujay Devne\",\r\n    \"user_name\": \"sujay_devne\",\r\n    \"email\": \"sujay_devne@zmail.com\"\r\n}",
               "options": {
                 "raw": {
                   "language": "text"
@@ -103,6 +92,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
                 "user"
               ]
@@ -111,26 +101,54 @@
           "response": []
         },
         {
-          "name": "Ger_User",
+          "name": "Get_User",
           "request": {
             "method": "GET",
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MjE0MDEsImV4cCI6MTc0MzYyMjMwMX0.ADFZCdltmtG4Z2ALfF0shSpuhyTG-eZ46DOqpDtKAxAjmDX7qC0glgA0gTi6Ji09",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDkyNzY4ODAsImV4cCI6MTc0OTI4MDQ4MH0.pUqJoTEXhV4z-gqqIJ8gJx4u3Km_gBloxXLU4SwPVOvgb3XBrmmsY6bAkPEJPGJw",
                 "type": "text"
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/katta/users/1",
+              "raw": "http://localhost:8989/katta/users/5",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
-                "1"
+                "5"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ger_LoggedIn_User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg0OTA2MTUsImV4cCI6MTc0ODQ5NDIxNX0.pb3XSAuYkvGym1AO_ajyCVkr21yGfbJIONt1YC9d7skY9VlT75LDmgndDyOUqz52",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8989/katta/users/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8989",
+              "path": [
+                "katta",
+                "users",
+                "me"
               ]
             }
           },
@@ -146,7 +164,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0MzYyMTAyNiwiZXhwIjoxNzQzNjIxOTI2fQ._yBPsUSrn2ft7DnV6rpEN-I-6I5tihquI643QFCGXuvU1HkzJFN1qBA8TqZLJx9N",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDkyNzY4ODAsImV4cCI6MTc0OTI4MDQ4MH0.pUqJoTEXhV4z-gqqIJ8gJx4u3Km_gBloxXLU4SwPVOvgb3XBrmmsY6bAkPEJPGJw",
                 "type": "text"
               }
             ],
@@ -158,6 +176,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users"
               ]
             }
@@ -192,6 +211,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
                 "user"
               ]
@@ -206,20 +226,21 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg3NzEzODksImV4cCI6MTc0ODc3NDk4OX0.agveZ8qy1_P_awD4gKmToh5s-9Jg9rGIlDf3G7laNeXB6X636ew3TxO6sJa7Sr5A",
                 "type": "text"
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/katta/users/1",
+              "raw": "http://localhost:8989/katta/users/8",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
-                "1"
+                "8"
               ]
             }
           },
@@ -232,7 +253,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0MzYxOTIyMSwiZXhwIjoxNzQzNjIwMTIxfQ.fayU9YdkTw1ggi9qQdJ6b5Yyauv7-M8PaVTl03zxqmEDqRPoyvhbs84dLrKC3L0R",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDkyNzY4ODAsImV4cCI6MTc0OTI4MDQ4MH0.pUqJoTEXhV4z-gqqIJ8gJx4u3Km_gBloxXLU4SwPVOvgb3XBrmmsY6bAkPEJPGJw",
                 "type": "text"
               }
             ],
@@ -244,6 +265,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
                 "username",
                 "rishabh_newaskar"
@@ -259,7 +281,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0MzYyMTAyNiwiZXhwIjoxNzQzNjIxOTI2fQ._yBPsUSrn2ft7DnV6rpEN-I-6I5tihquI643QFCGXuvU1HkzJFN1qBA8TqZLJx9N",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg3ODM2NTEsImV4cCI6MTc0ODc4NzI1MX0.CmvoK-LP-4nbD40mf6pq312Sy27cDkRaTfVgwYA9s_il3afX713OQQJdpgq6cnqL",
                 "type": "text"
               }
             ],
@@ -273,16 +295,17 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/katta/users/follow/1",
+              "raw": "http://localhost:8989/katta/users/follow/2",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
                 "follow",
-                "1"
+                "2"
               ]
             }
           },
@@ -295,7 +318,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MjE0MDEsImV4cCI6MTc0MzYyMjMwMX0.ADFZCdltmtG4Z2ALfF0shSpuhyTG-eZ46DOqpDtKAxAjmDX7qC0glgA0gTi6Ji09",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg0OTUyMTgsImV4cCI6MTc0ODQ5ODgxOH0.jRC2VEXqWE5OZVqcylY9UImqIkyZpjHdCoNVXzfaOTldXWPwz-8DSO_qjbSzkPwg",
                 "type": "text"
               }
             ],
@@ -307,6 +330,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "users",
                 "unfollow",
                 "2"
@@ -319,7 +343,26 @@
           "name": "Get_Followers",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg1NDIwNjMsImV4cCI6MTc0ODU0NTY2M30.RENgjtT0d_ADLmh6OfwVzhhrLCQVydKapZcITyZeLv2ABu7FPF3QrAJs5HNRYTp5",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8989/katta/users/followers",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8989",
+              "path": [
+                "katta",
+                "users",
+                "followers"
+              ]
+            }
           },
           "response": []
         },
@@ -327,7 +370,26 @@
           "name": "Get_Followings",
           "request": {
             "method": "GET",
-            "header": []
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg5MjExOTMsImV4cCI6MTc0ODkyNDc5M30.d-Nxavw1S-nvSB0eCEkEDdYKxWd2iLX-d90u5Y8hl1-lzSrm3xlZkgXocCgYtdmB",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:8989/katta/users/followings",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8989",
+              "path": [
+                "katta",
+                "users",
+                "followings"
+              ]
+            }
           },
           "response": []
         }
@@ -348,13 +410,13 @@
               },
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJ2aWRkZXNoX3Bvd2FyQHptYWlsLmNvbSIsImlhdCI6MTc0OTAxMTAwMCwiZXhwIjoxNzQ5MDE0NjAwfQ.2aLjxJZBPn_zRbP-F9ExMYxTg-VLfFPk9wJLsAOq62QYlKQTm_pey_LWtU4w4YWi",
                 "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"caption\": \"Adventure Awaits!\",\r\n    \"user\": {\r\n        \"userId\": 1\r\n    }\r\n}",
+              "raw": "{\r\n    \"caption\": \"Travelling to Kholapur\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -369,6 +431,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
                 "post"
               ]
@@ -383,7 +446,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJrdXJuYWxfcGFuZHlhQHptYWlsLmNvbSIsImlhdCI6MTc0ODA4Mjg2OCwiZXhwIjoxNzQ4MDgzNzY4fQ.LNsDNpiUX-eCuN0xvO9Hg3TdWT9BrPcsf8M_2iB-QSYTqzER1i5t7YOKdYlN5pOL",
                 "type": "text"
               }
             ],
@@ -395,6 +458,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts"
               ]
             }
@@ -408,20 +472,21 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk5ODE4NzgsImV4cCI6MTc0OTk4NTQ3OH0.h85cctfoQiLs9A5kn_QcJNdNwGIWfEsgOk7I4c051Cs86JN9QWkoL00EudWiAKXp",
                 "type": "text"
               }
             ],
             "url": {
-              "raw": "http://localhost:8989/katta/posts/1",
+              "raw": "http://localhost:8989/katta/posts/12",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
-                "1"
+                "12"
               ],
               "query": [
                 {
@@ -462,6 +527,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
                 "post"
               ]
@@ -476,7 +542,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDg3NzEzODksImV4cCI6MTc0ODc3NDk4OX0.agveZ8qy1_P_awD4gKmToh5s-9Jg9rGIlDf3G7laNeXB6X636ew3TxO6sJa7Sr5A",
                 "type": "text"
               }
             ],
@@ -490,15 +556,90 @@
               }
             },
             "url": {
-              "raw": "http://localhost:8989/katta/posts/2",
+              "raw": "http://localhost:8989/katta/posts/8",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
-                "2"
+                "8"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Like_Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk5ODE4NzgsImV4cCI6MTc0OTk4NTQ3OH0.h85cctfoQiLs9A5kn_QcJNdNwGIWfEsgOk7I4c051Cs86JN9QWkoL00EudWiAKXp",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8989/katta/posts/12/like",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8989",
+              "path": [
+                "katta",
+                "posts",
+                "12",
+                "like"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Unlike_Post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk5ODE4NzgsImV4cCI6MTc0OTk4NTQ3OH0.h85cctfoQiLs9A5kn_QcJNdNwGIWfEsgOk7I4c051Cs86JN9QWkoL00EudWiAKXp",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:8989/katta/posts/12/unlike",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "8989",
+              "path": [
+                "katta",
+                "posts",
+                "12",
+                "unlike"
               ]
             }
           },
@@ -511,7 +652,7 @@
             "header": [
               {
                 "key": "Authorization",
-                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDM2MTc5NjEsImV4cCI6MTc0MzYxODg2MX0.Yvic7yjeoX6nn1E7_YCGTfKsWZ6tYd0ijqSjwMiMideRnWbDZmMmaPs5SBJRLYsP",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDgzMTk2MTksImV4cCI6MTc0ODMyMDUxOX0.8HeHxpWNhAVvGV8KqAibsEl1aU16VnASzam3UuXK4G-V2daHcLVeTuZPffOIPOV0",
                 "type": "text"
               }
             ],
@@ -523,6 +664,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
                 "userid",
                 "1"
@@ -550,6 +692,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "posts",
                 "username",
                 "sujay_devne"
@@ -571,66 +714,72 @@
               {
                 "key": "Cache-Control",
                 "value": "no-cache",
-                "name": "cache-control",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Postman-Token",
                 "value": "<calculated when request is sent>",
-                "name": "postman-token",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Content-Type",
                 "value": "application/json",
-                "name": "content-type",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Content-Length",
                 "value": "<calculated when request is sent>",
-                "name": "content-length",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Host",
                 "value": "<calculated when request is sent>",
-                "name": "host",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "User-Agent",
                 "value": "PostmanRuntime/7.39.1",
-                "name": "user-agent",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Accept",
                 "value": "*/*",
-                "name": "accept",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Accept-Encoding",
                 "value": "gzip, deflate, br",
-                "name": "accept-encoding",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Connection",
                 "value": "keep-alive",
-                "name": "connection",
-                "type": "text"
+                "type": "text",
+                "disabled": true
               },
               {
                 "key": "Content-Type",
                 "value": "application/json",
+                "type": "text",
+                "disabled": true
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0OTc4OTkzOCwiZXhwIjoxNzQ5NzkzNTM4fQ.xk46QvGdlHP9SYXKYDj9LiEPYPXcYoWRUi9-s7CxQSFfMJ-B2iqTPrBG4ivN_1Yl",
                 "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"comment\": \"Awesome post!\",\r\n    \"post\": {\r\n        \"postId\": 1\r\n    }\r\n}",
+              "raw": "{\r\n  \"comment\": \"comment by rishabh_newaskar\",\r\n  \"post\": {\r\n    \"postId\": 12\r\n  }\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -645,6 +794,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "comments",
                 "comment"
               ]
@@ -656,7 +806,13 @@
           "name": "Get_All_Comment",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk2OTc1MjAsImV4cCI6MTc0OTcwMTEyMH0.25dfQjCuxyMjYYvg34QQ7JZCmj2QT9JSPiVfnsWCSEZRVwP-SGI6pMMlCqII72ko",
+                "type": "text"
+              }
+            ],
             "url": {
               "raw": "http://localhost:8989/katta/comments",
               "protocol": "http",
@@ -665,6 +821,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "comments"
               ]
             }
@@ -675,17 +832,24 @@
           "name": "Get_Comment",
           "request": {
             "method": "GET",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk0NDA2ODAsImV4cCI6MTc0OTQ0NDI4MH0.YIRmZ51v9ah7FNPR_P45S_b6QS640R0S1DY_rQq374iJiSHrECONaCkXdeRTjt_9",
+                "type": "text"
+              }
+            ],
             "url": {
-              "raw": "http://localhost:8989/katta/comments/1",
+              "raw": "http://localhost:8989/katta/comments/13",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "comments",
-                "1"
+                "13"
               ]
             }
           },
@@ -697,68 +861,14 @@
             "method": "PUT",
             "header": [
               {
-                "key": "Cache-Control",
-                "value": "no-cache",
-                "name": "cache-control",
-                "type": "text"
-              },
-              {
-                "key": "Postman-Token",
-                "value": "<calculated when request is sent>",
-                "name": "postman-token",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
-                "name": "content-type",
-                "type": "text"
-              },
-              {
-                "key": "Content-Length",
-                "value": "<calculated when request is sent>",
-                "name": "content-length",
-                "type": "text"
-              },
-              {
-                "key": "Host",
-                "value": "<calculated when request is sent>",
-                "name": "host",
-                "type": "text"
-              },
-              {
-                "key": "User-Agent",
-                "value": "PostmanRuntime/7.39.1",
-                "name": "user-agent",
-                "type": "text"
-              },
-              {
-                "key": "Accept",
-                "value": "*/*",
-                "name": "accept",
-                "type": "text"
-              },
-              {
-                "key": "Accept-Encoding",
-                "value": "gzip, deflate, br",
-                "name": "accept-encoding",
-                "type": "text"
-              },
-              {
-                "key": "Connection",
-                "value": "keep-alive",
-                "name": "connection",
-                "type": "text"
-              },
-              {
-                "key": "Content-Type",
-                "value": "application/json",
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk0NDMzMDQsImV4cCI6MTc0OTQ0NjkwNH0.qiS_T01LPptI3krfi7z1SRQfDxfI4Mc3tPxTwM275HsR5kCTF5T1D9itH_rp8TaD",
                 "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"commentId\": 1,\r\n    \"date\": \"2025-03-17\",\r\n    \"comment\": \"First Post post!!\",\r\n    \"postId\": 2\r\n}",
+              "raw": "{\r\n  \"commentId\": 1,\r\n  \"comment\": \"newly comment here.\"\r\n}\r\n",
               "options": {
                 "raw": {
                   "language": "json"
@@ -773,6 +883,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "comments",
                 "comment"
               ]
@@ -784,17 +895,24 @@
           "name": "Delete_Comment",
           "request": {
             "method": "DELETE",
-            "header": [],
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJzdWpheV9kZXZuZUB6bWFpbC5jb20iLCJpYXQiOjE3NDk0NDM4MDQsImV4cCI6MTc0OTQ0NzQwNH0.UXxYujbiWxzDFWYKmgp_zaKgvtoNhuFfMEn8f1Xs_RxkiG4uqycpf5iJwXm1dybj",
+                "type": "text"
+              }
+            ],
             "url": {
-              "raw": "http://localhost:8989/katta/comments/3",
+              "raw": "http://localhost:8989/katta/comments/4",
               "protocol": "http",
               "host": [
                 "localhost"
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "comments",
-                "3"
+                "4"
               ]
             }
           },
@@ -814,11 +932,16 @@
                 "key": "Content-Type",
                 "value": "application/json",
                 "type": "text"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJyaXNoYWJoX25ld2Fza2FyQHptYWlsLmNvbSIsImlhdCI6MTc0OTk4MTA1NiwiZXhwIjoxNzQ5OTg0NjU2fQ.ynrhCVe2Ubfh7ElRUjGlOHcL6ixgOcqtp0ZAbTruA-Pn_4c9dBlYVBppZd1NOJjO",
+                "type": "text"
               }
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Rishabh Newaskar\",\r\n    \"username\": \"rishabh_newaskar\",\r\n    \"email\": \"rishabh_newaskar@zmail.com\",\r\n    \"password\": \"rishabh_newaskar\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Kurnal Pandya\",\r\n    \"username\": \"kurnal_pandya\",\r\n    \"email\": \"kurnal_pandya@zmail.com\",\r\n    \"password\": \"kurnal_pandya\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -833,6 +956,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "auth",
                 "signup"
               ]
@@ -872,6 +996,7 @@
               ],
               "port": "8989",
               "path": [
+                "katta",
                 "auth",
                 "login"
               ]
