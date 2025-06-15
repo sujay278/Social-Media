@@ -90,7 +90,7 @@ public class PostServiceImpl implements PostService {
         if (!post.getLikedBy().contains(user)) {
             post.getLikedBy().add(user);
             postRepository.save(post);
-            return "Post liked successfully! postId :" + postId;
+            return "Post liked successfully.";
         }
         return "You already like this post.";
     }
@@ -104,7 +104,7 @@ public class PostServiceImpl implements PostService {
         if (post.getLikedBy().contains(user)) {
             post.getLikedBy().remove(user);
             postRepository.save(post);
-            return "Post unliked successfully! postId :" + postId;
+            return "Post unliked successfully.";
         }
         return "You do not like this post to unlike.";
     }
