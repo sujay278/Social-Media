@@ -28,8 +28,9 @@ public class PostController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Post> getPost(@PathVariable int id) {
-        return ResponseEntity.ok(postService.getPost(id));
+    public ResponseEntity<PostDTO> getPost(@PathVariable int id) {
+        PostDTO postDTO = new PostDTO(postService.getPost(id));
+        return ResponseEntity.ok(postDTO);
     }
 
     @PutMapping("/post")
@@ -53,5 +54,13 @@ public class PostController {
         return ResponseEntity.ok(postService.getPostsByUsername(username));
     }
 
+    @PostMapping("/{postId}/like")
+    public ResponseEntity<?> likePost(@PathVariable int postId) {
+        return ResponseEntity.ok(postService.likePost(postId));
+    }
 
+    @DeleteMapping("/{postId}/unlike")
+    public ResponseEntity<?> unLikePost(@PathVariable int postId) {
+        return ResponseEntity.ok(postService.unLikePost(postId));
+    }
 }

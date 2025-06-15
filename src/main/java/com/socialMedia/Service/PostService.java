@@ -22,4 +22,7 @@ public interface PostService {
 
     List<Map<String, Object>> getPostsByUsername(String username);
 
+    String likePost(int postId);
+
+    String unLikePost(int postId);
 }
